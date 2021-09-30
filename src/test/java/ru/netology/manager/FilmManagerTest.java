@@ -5,6 +5,7 @@ import ru.netology.domain.FilmItem;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class FilmManagerTest {
 
     private FilmManager manager;
@@ -19,6 +20,13 @@ public class FilmManagerTest {
     private FilmItem ninth = new FilmItem(9, "Махнемся телами", "комедия");
     private FilmItem tenth = new FilmItem(10, "Злое", "ужасы");
     private FilmItem eleventh = new FilmItem(11, "Не время умирать", "драма");
+    private FilmItem twelvth = new FilmItem(12, "Тест", "триллер");
+
+    @Test
+    void ShouldShowWithoutParam() {
+        manager = new FilmManager();
+    }
+
 
     @Test
     void ShouldShowOnlyLast10WhenAddedMore() {
@@ -81,21 +89,6 @@ public class FilmManagerTest {
         manager.add(tenth);
 
         FilmItem[] expected = new FilmItem[]{tenth, ninth, eighth, seventh, sixth};
-
-        assertArrayEquals(expected, manager.getAll());
-    }
-
-    @Test
-    void ShouldShowOnlyLast4WhenAdded4InRequest5() {
-
-        manager = new FilmManager(5);
-
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
-        manager.add(tenth);
-
-        FilmItem[] expected = new FilmItem[]{tenth, ninth, eighth, seventh};
 
         assertArrayEquals(expected, manager.getAll());
     }

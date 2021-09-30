@@ -4,11 +4,18 @@ import ru.netology.domain.FilmItem;
 
 public class FilmManager {
     private FilmItem[] items = new FilmItem[0];
-    int currentLength = 10;
-    int newLength;
+    private int currentLength = 10;
 
-    public FilmManager(int newLength) {
-        this.newLength = newLength;
+    //конструктор без параметров
+    public FilmManager() {
+    }
+
+    //конструктор с одним параметром
+    public FilmManager(int currentLength) {
+        if (currentLength > 10) {
+            return;
+        }
+        this.currentLength = currentLength;
     }
 
     //Добавление фильма
@@ -27,14 +34,12 @@ public class FilmManager {
 
     // определение количества фильмов
     public FilmItem[] getAll() {
+        int newLength = items.length;
         if (newLength > currentLength) {
             newLength = currentLength;
         }
         if (newLength < 0) {
             newLength = 0;
-        }
-        if (items.length < newLength) {
-            newLength = items.length;
         }
 
         // создание массива для хранения результата
