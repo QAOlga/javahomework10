@@ -3,6 +3,8 @@ package ru.netology.manager;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.FilmItem;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -27,6 +29,26 @@ public class FilmManagerTest {
         manager = new FilmManager();
     }
 
+    @Test
+    void ShouldResultLengthMoreThanLimit() {
+
+        manager = new FilmManager(11);
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+
+        FilmItem[] expected = new FilmItem[]{ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+
+        assertArrayEquals(expected, manager.getAll());
+
+    }
 
     @Test
     void ShouldShowOnlyLast10WhenAddedMore() {
@@ -101,5 +123,7 @@ public class FilmManagerTest {
         FilmItem[] expected = new FilmItem[]{};
 
         assertArrayEquals(expected, manager.getAll());
+
+//        System.out.println(Arrays.toString(items));
     }
 }
